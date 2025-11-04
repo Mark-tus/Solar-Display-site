@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Solar Plants · Demo</title>
+  </head>
+  <body class="bg-white dark:bg-gray-900">
+    <!--
+      Hidden static Netlify form (Netlify needs a parseable HTML form on build to detect forms).
+      The React ContactForm also posts with the same form-name so submissions are captured.
+    -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <p class="hidden">
+        <label>Don’t fill this out: <input name="bot-field" /></label>
+      </p>
+      <p>
+        <label>Name: <input name="name" /></label>
+      </p>
+      <p>
+        <label>Email: <input name="email" /></label>
+      </p>
+      <p>
+        <label>Message: <textarea name="message"></textarea></label>
+      </p>
+    </form>
+
+    <noscript>
+      This site requires JavaScript to work properly. Please enable JavaScript in your browser settings.
+    </noscript>
+
+    <div id="root"></div>
+    <!-- Built React script will be injected by build -->
+  </body>
+</html>
