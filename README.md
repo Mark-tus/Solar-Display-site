@@ -1,1 +1,0 @@
-# Solar-Display-site
