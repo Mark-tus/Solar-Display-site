@@ -5,10 +5,10 @@ const plants = [
     location: "Gujarat, India",
     capacity: "50 kW",
     images: [
-      "/images/solar1.webp",
-      "/images/solar2.webp",
-      "/images/solar3.webp",
-      "/images/solar4.webp"
+      "/images/A.jpeg",
+      "/images/B.jpeg",
+      "/images/C.jpeg",
+      "/images/D.jpeg"
     ],
     description: "Rooftop installation with fixed-tilt panels. Operational since 2022."
   },
@@ -18,10 +18,10 @@ const plants = [
     location: "Rajasthan, India",
     capacity: "30 kW",
     images: [
-      "/images/solar2.webp",
-      "/images/solar1.webp",
-      "/images/solar3.webp",
-      "/images/solar4.webp"
+      "/images/E.jpeg",
+      "/images/F.jpeg",
+      "/images/G.jpeg",
+      "/images/H.jpeg"
     ],
     description: "Ground-mounted array. Includes string inverters and remote monitoring."
   },
@@ -31,10 +31,10 @@ const plants = [
     location: "Maharashtra, India",
     capacity: "75 kW",
     images: [
-      "/images/solar4.webp",
-      "/images/solar3.webp",
-      "/images/solar1.webp",
-      "/images/solar2.webp"
+      "/images/I.jpeg",
+      "/images/J.jpeg",
+      "/images/K.jpeg",
+      "/images/L.jpeg"
     ],
     description: "Commercial rooftop installation powering a factory unit."
   },
@@ -44,10 +44,10 @@ const plants = [
     location: "Karnataka, India",
     capacity: "100 kW",
     images: [
-      "/images/solar3.webp",
-      "/images/solar4.webp",
-      "/images/solar1.webp",
-      "/images/solar2.webp"
+      "/images/M.jpeg",
+      "/images/N.jpeg",
+      "/images/O.jpeg",
+      "/images/P.jpeg"
     ],
     description: "Large ground-mounted solar park with SCADA telemetry."
   },
@@ -57,10 +57,10 @@ const plants = [
     location: "Telangana, India",
     capacity: "25 kW",
     images: [
-      "/images/solar4.webp",
-      "/images/solar2.webp",
-      "/images/solar1.webp",
-      "/images/solar4.webp"
+      "/images/Q.jpeg",
+      "/images/R.jpeg",
+      "/images/S.jpeg",
+      "/images/T.jpeg"
     ],
     description: "Community rooftop project with net-metering."
   },
@@ -70,10 +70,10 @@ const plants = [
     location: " India",
     capacity: "5 kW",
     images: [
-      "/images/solar3.webp",
-      "/images/solar2.webp",
-      "/images/solar1.webp",
-      "/images/solar4.webp"
+      "/images/U.jpeg",
+      "/images/V.jpeg",
+      "/images/W.jpeg",
+      "/images/X.jpeg"
     ],
     description: "Community rooftop project with net-metering."
   }

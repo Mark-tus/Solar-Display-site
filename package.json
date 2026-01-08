@@ -9,9 +9,12 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "framer-motion": "^12.24.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1"
+    "react-router-dom": "^7.12.0",
+    "react-scripts": "5.0.1",
+    "react-swipeable": "^7.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
