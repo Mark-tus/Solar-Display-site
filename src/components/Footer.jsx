@@ -4,7 +4,10 @@ export default function Footer() {
   return (
     <footer className="bg-white dark:bg-gray-900 border-t mt-12">
       <div className="container mx-auto px-4 py-6 text-center text-gray-600 dark:text-gray-300">
-        © {new Date().getFullYear()} SolarInfo · Contact: your-email@example.com
+        © {new Date().getFullYear()} CHROMOSPHERE POWER·
+         Contact: rineel82@gmail.com ·
+         9850384255 ·
+         Rineel Tuscano
       </div>
     </footer>
   );

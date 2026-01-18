@@ -42,9 +42,9 @@ function AppContent() {
           </div>
         </section>
 
-        <section id="contact" className="mt-12">
+        {/* <section id="contact" className="mt-12">
           <ContactForm />
-        </section>
+        </section> */}
       </main>
 
       <Footer />

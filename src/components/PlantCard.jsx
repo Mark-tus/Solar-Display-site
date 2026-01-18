@@ -1,37 +1,113 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useSwipeable } from "react-swipeable";
 import { useNavigate } from "react-router-dom";
 
-const PlantCard = ({ plant }) => {
-  const { name, description, images, id } = plant;
+const PlantCard = ({ plant, onSelect }) => {
+  const { name, description, images = [] } = plant;
+
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const intervalRef = useRef(null);
   const navigate = useNavigate();
 
+  /* Auto slideshow (pause on hover) */
   useEffect(() => {
-    if (!images?.length) return;
-    const interval = setInterval(() => {
-      setCurrentIndex(i => (i === images.length - 1 ? 0 : i + 1));
+    if (!images.length || isHovered) return;
+
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex(prev =>
+        prev === images.length - 1 ? 0 : prev + 1
+      );
+      setIsLoaded(false);
     }, 2500);
-    return () => clearInterval(interval);
-  }, [images]);
+
+    return () => clearInterval(intervalRef.current);
+  }, [images, isHovered]);
+
+  /* Swipe gestures (image only) */
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => {
+      setCurrentIndex(i => (i + 1) % images.length);
+      setIsLoaded(false);
+    },
+    onSwipedRight: () => {
+      setCurrentIndex(i =>
+        i === 0 ? images.length - 1 : i - 1
+      );
+      setIsLoaded(false);
+    },
+    trackMouse: true
+  });
+
+  /* Unified click handler */
+  const handleClick = () => {
+    if (typeof onSelect === "function") {
+      onSelect(plant);
+    } else {
+      navigate(`/plants/${plant.id}`);
+    }
+  };
 
   return (
     <div
-      onClick={() => navigate(`/plants/${id}`)}
-      className="cursor-pointer bg-white dark:bg-green-900 shadow-lg rounded-xl overflow-hidden hover:scale-105 transition"
+      onClick={handleClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="cursor-pointer bg-white dark:bg-green-900 shadow-lg
+                 rounded-xl overflow-hidden transform hover:scale-105
+                 transition duration-300"
     >
-      <div className="relative h-56">
+      {/* IMAGE AREA */}
+      <div
+        {...swipeHandlers}
+        className="relative h-56 w-full overflow-hidden"
+      >
+        {/* Skeleton */}
+        {!isLoaded && (
+          <div className="absolute inset-0 bg-gray-300 dark:bg-green-800 animate-pulse z-10" />
+        )}
+
         <img
           src={images[currentIndex]}
           alt={name}
-          className="object-cover w-full h-full"
+          loading="lazy"
+          onLoad={() => setIsLoaded(true)}
+          className={`object-cover w-full h-full transition-opacity duration-700
+            ${isLoaded ? "opacity-100" : "opacity-0"}`}
         />
+
+        {/* DOT INDICATORS */}
+        <div
+          className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20
+                     flex gap-1 px-2 py-1 rounded-full
+                     bg-black/40 backdrop-blur-sm"
+          onClick={e => e.stopPropagation()}
+        >
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setCurrentIndex(index);
+                setIsLoaded(false);
+              }}
+              className={`w-2 h-2 rounded-full transition-all ${
+                index === currentIndex
+                  ? "bg-green-400 scale-110"
+                  : "bg-white/70 hover:bg-white"
+              }`}
+              aria-label={`Image ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
 
+      {/* TEXT */}
       <div className="p-4 text-center">
         <h3 className="text-lg font-bold text-green-700 dark:text-green-300">
           {name}
         </h3>
-        <p className="text-gray-700 dark:text-gray-200 text-sm mt-2">
+        <p className="text-gray-700 dark:text-gray-200 text-sm mt-2 line-clamp-2">
           {description}
         </p>
       </div>
