@@ -3,6 +3,7 @@ import { useSwipeable } from "react-swipeable";
 import { useNavigate } from "react-router-dom";
 
 const PlantCard = ({ plant, onSelect }) => {
+  // 🔹 Keeping destructuring (name/description retained but unused for now)
   const { name, description, images = [] } = plant;
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -11,7 +12,9 @@ const PlantCard = ({ plant, onSelect }) => {
   const intervalRef = useRef(null);
   const navigate = useNavigate();
 
-  /* Auto slideshow (pause on hover) */
+  /* ===============================
+     AUTO SLIDESHOW (pause on hover)
+     =============================== */
   useEffect(() => {
     if (!images.length || isHovered) return;
 
@@ -25,7 +28,9 @@ const PlantCard = ({ plant, onSelect }) => {
     return () => clearInterval(intervalRef.current);
   }, [images, isHovered]);
 
-  /* Swipe gestures (image only) */
+  /* ===============================
+     SWIPE GESTURES (mobile + mouse)
+     =============================== */
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => {
       setCurrentIndex(i => (i + 1) % images.length);
@@ -40,7 +45,9 @@ const PlantCard = ({ plant, onSelect }) => {
     trackMouse: true
   });
 
-  /* Unified click handler */
+  /* ===============================
+     CLICK HANDLER (modal / route)
+     =============================== */
   const handleClick = () => {
     if (typeof onSelect === "function") {
       onSelect(plant);
@@ -54,34 +61,55 @@ const PlantCard = ({ plant, onSelect }) => {
       onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="cursor-pointer bg-white dark:bg-green-900 shadow-lg
-                 rounded-xl overflow-hidden transform hover:scale-105
-                 transition duration-300"
+      className="
+        cursor-pointer
+        bg-white dark:bg-green-900
+        shadow-lg rounded-xl
+        overflow-hidden
+        transform hover:scale-105
+        transition duration-300
+      "
     >
-      {/* IMAGE AREA */}
+      {/* ===============================
+          IMAGE AREA (IMAGE-ONLY CARD)
+         =============================== */}
       <div
         {...swipeHandlers}
         className="relative h-56 w-full overflow-hidden"
       >
-        {/* Skeleton */}
+        {/* Skeleton Loader */}
         {!isLoaded && (
-          <div className="absolute inset-0 bg-gray-300 dark:bg-green-800 animate-pulse z-10" />
+          <div className="
+            absolute inset-0
+            bg-gray-300 dark:bg-green-800
+            animate-pulse
+            z-10
+          " />
         )}
 
         <img
           src={images[currentIndex]}
-          alt={name}
+          alt={name || "Solar Plant"}
           loading="lazy"
           onLoad={() => setIsLoaded(true)}
-          className={`object-cover w-full h-full transition-opacity duration-700
-            ${isLoaded ? "opacity-100" : "opacity-0"}`}
+          className={`
+            object-cover w-full h-full
+            transition-opacity duration-700
+            ${isLoaded ? "opacity-100" : "opacity-0"}
+          `}
         />
 
-        {/* DOT INDICATORS */}
+        {/* ===============================
+            DOT INDICATORS
+           =============================== */}
         <div
-          className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20
-                     flex gap-1 px-2 py-1 rounded-full
-                     bg-black/40 backdrop-blur-sm"
+          className="
+            absolute bottom-2 left-1/2
+            -translate-x-1/2 z-20
+            flex gap-1 px-2 py-1
+            rounded-full
+            bg-black/40 backdrop-blur-sm
+          "
           onClick={e => e.stopPropagation()}
         >
           {images.map((_, index) => (
@@ -91,18 +119,27 @@ const PlantCard = ({ plant, onSelect }) => {
                 setCurrentIndex(index);
                 setIsLoaded(false);
               }}
-              className={`w-2 h-2 rounded-full transition-all ${
-                index === currentIndex
-                  ? "bg-green-400 scale-110"
-                  : "bg-white/70 hover:bg-white"
-              }`}
+              className={`
+                w-2 h-2 rounded-full
+                transition-all
+                ${
+                  index === currentIndex
+                    ? "bg-green-400 scale-110"
+                    : "bg-white/70 hover:bg-white"
+                }
+              `}
               aria-label={`Image ${index + 1}`}
             />
           ))}
         </div>
       </div>
 
-      {/* TEXT */}
+      {/* ===============================
+          TEXT SECTION (REMOVED FOR NOW)
+          Keeping commented for future use
+         =============================== */}
+
+      {/*
       <div className="p-4 text-center">
         <h3 className="text-lg font-bold text-green-700 dark:text-green-300">
           {name}
@@ -111,6 +148,7 @@ const PlantCard = ({ plant, onSelect }) => {
           {description}
         </p>
       </div>
+      */}
     </div>
   );
 };
