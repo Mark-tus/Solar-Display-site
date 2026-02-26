@@ -1,9 +1,9 @@
 const plants = [
   {
     id: 1,
-    name: "Solar Plant A",
-    location: "Gujarat, India",
-    capacity: "50 kW",
+    name: "Solar Plant ",
+    location: "Virar, India",
+    //capacity: "50 kW",
     images: [
       "/images/A.jpeg",
       "/images/B.jpeg",
@@ -14,9 +14,9 @@ const plants = [
   },
   {
     id: 2,
-    name: "Solar Plant B",
-    location: "Rajasthan, India",
-    capacity: "30 kW",
+    name: "Solar Plant ",
+    location: "Virar, India",
+    //capacity: "30 kW",
     images: [
       "/images/E.jpeg",
       "/images/F.jpeg",
@@ -27,9 +27,9 @@ const plants = [
   },
   {
     id: 3,
-    name: "Solar Plant C",
+    name: "Solar Plant ",
     location: "Maharashtra, India",
-    capacity: "75 kW",
+    //capacity: "75 kW",
     images: [
       "/images/I.jpeg",
       "/images/J.jpeg",
@@ -40,9 +40,9 @@ const plants = [
   },
   {
     id: 4,
-    name: "Solar Plant D",
-    location: "Karnataka, India",
-    capacity: "100 kW",
+    name: "Solar Plant ",
+    location: "Virar, India",
+    //capacity: "100 kW",
     images: [
       "/images/M.jpeg",
       "/images/N.jpeg",
@@ -53,9 +53,9 @@ const plants = [
   },
   {
     id: 5,
-    name: "Solar Plant E",
-    location: "Telangana, India",
-    capacity: "25 kW",
+    name: "Solar Plant ",
+    location: "Virar, India",
+    //capacity: "25 kW",
     images: [
       "/images/Q.jpeg",
       "/images/R.jpeg",
@@ -66,9 +66,9 @@ const plants = [
   },
   {
     id: 6,
-    name: "Solar Plant F",
+    name: "Solar Plant ",
     location: " India",
-    capacity: "5 kW",
+    //capacity: "5 kW",
     images: [
       "/images/U.jpeg",
       "/images/V.jpeg",
